@@ -1,8 +1,10 @@
+import { getPlayer } from "@/services/playerService";
 import { NextResponse } from "next/server";
 
 export async function GET() {
+  const player = await getPlayer();
   return NextResponse.json({
-    name: "John Doe",
+    name: player.name,
     age: 25,
     email: "sdfsfs",
   });
