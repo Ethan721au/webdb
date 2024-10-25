@@ -10,10 +10,13 @@ export async function GET() {
   });
 }
 
-export async function PUT() {
-  const player = await getPlayer();
+export async function PUT(request: Request) {
+  const formData = await request.formData();
+  const name = formData.get("name");
+  // const email = formData.get('email')
+  // const player = await getPlayer();
   return NextResponse.json({
-    name: player.name,
+    name: name,
     age: 25,
     email: "sdfsfs",
   });
