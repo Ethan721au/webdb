@@ -1,26 +1,63 @@
-import { dbconnect } from "@/config/mongoDB.config";
-import { getPlayer } from "@/services/playerService";
+"use client";
 
-export default async function Home() {
-  // const player = await getPlayer();
-  // const formData = new FormData();
-  // formData.append("name", "Robert");
-  // console.log(formData);
-  const playerName = { name: "JC" };
+import PlayerList from "@/components/PlayerList/PlayerList";
+import { recordGame } from "@/services/gameService";
+import { Player } from "@/types";
+import { useEffect, useState } from "react";
 
-  const test = await fetch("http://localhost:3000/api/", {
-    method: "PUT",
-    body: JSON.stringify(playerName),
-  });
-  // console.log(test, "test");
-  const data = await test.json();
-  console.log(data);
-  // console.log(player);
+export default function Home() {
+  const [players, setPlayers] = useState([]);
+  const [remainingPlayers, setRemainingPlayers] = useState([]);
+  const [winner, setWinner] = useState<Player>();
+  const [loser, setLoser] = useState<Player>();
+  console.log(winner, loser);
 
-  dbconnect();
+  useEffect(() => {
+    getAllPlayers();
+  }, []);
+
+  const getAllPlayers = async () => {
+    const data = await fetch("http://localhost:3000/api/allPlayers", {
+      method: "GET",
+    });
+
+    const { players } = await data.json();
+    setPlayers(players);
+  };
+
+  const selectWinner = (player: Player) => {
+    setWinner(player);
+    setRemainingPlayers(
+      players.filter((p) => p.first_name !== player.first_name)
+    );
+  };
+
+  const selectLoser = (player: Player) => {
+    setLoser(player);
+  };
+
+  const recordResult = async () => {
+    const gameDetails = {
+      opponent: { player1: winner, player2: loser },
+      winner: winner,
+      eloExchange: 10,
+    };
+
+    console.log(gameDetails);
+    await fetch("http://localhost:3000/api/recordGame", {
+      method: "PUT",
+      body: JSON.stringify(gameDetails),
+    });
+    // recordGame(gameDetails);
+  };
+
   return (
     <>
-      <div>{data.name}</div>
+      <div>Winner</div>
+      <PlayerList players={players} callback={selectWinner} />
+      {remainingPlayers.length > 0 && <div>Loser</div>}
+      <PlayerList players={remainingPlayers} callback={selectLoser} />
+      {loser && winner && <button onClick={recordResult}>Record result</button>}
     </>
   );
 }

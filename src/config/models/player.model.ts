@@ -3,7 +3,10 @@ import mongoose from "mongoose";
 
 export const playerSchema = new Schema(
   {
-    name: { type: String, required: true },
+    first_name: { type: String },
+    last_name: { type: String },
+    elo: { type: Number, default: 1200 },
+    winRates: { type: Object, default: { global: 0 } },
     // first_name: { type: String },
     // last_name: { type: String },
     // provider: { type: String },
