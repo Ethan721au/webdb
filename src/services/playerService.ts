@@ -2,6 +2,7 @@
 
 import { PlayerModel } from "@/config/models/player.model";
 import { dbconnect } from "@/config/mongoDB.config";
+import { Player } from "@/types";
 
 export const getAllPlayers = async () => {
   dbconnect();
@@ -10,11 +11,11 @@ export const getAllPlayers = async () => {
     return players;
   } catch (err) {
     console.log(err);
-    throw new Error("Error while fetching player in database!");
+    throw new Error("Error while fetching players in database!");
   }
 };
 
-export const getPlayer = async (request) => {
+export const getPlayer = async (request: Player) => {
   dbconnect();
   try {
     const player = await PlayerModel.findOne(request);
@@ -25,9 +26,7 @@ export const getPlayer = async (request) => {
   }
 };
 
-export const updatePlayer = async (player) => {
-  console.log(player, "player");
-
+export const updatePlayer = async (player: Player) => {
   dbconnect();
   try {
     await PlayerModel.findOneAndReplace(
@@ -37,7 +36,6 @@ export const updatePlayer = async (player) => {
 
     const user = await getPlayer({ first_name: "John" });
 
-    console.log(user, "user");
     return user;
   } catch (err) {
     console.log(err);

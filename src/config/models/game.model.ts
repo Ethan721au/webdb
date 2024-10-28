@@ -5,10 +5,10 @@ export const gameSchema = new Schema(
   {
     // outcome: { type: String, required: true },
     opponents: { type: Object, required: true },
-    winner: { type: String, required: true },
+    winner: { type: Object, required: true },
     eloExchange: { type: Number, required: true },
   },
   { timestamps: true }
 );
 
-export const GameModel = mongoose.models.game || model("player", gameSchema);
+export const GameModel = mongoose.models.game || model("game", gameSchema);

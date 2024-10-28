@@ -13,7 +13,6 @@ export async function GET() {
 export async function PUT(request: Request) {
   const player = await request.json();
   const updatedPlayer = await updatePlayer(player);
-  // console.log(updatedPlayer, "updatedPlayer");
 
   return NextResponse.json({
     name: updatedPlayer.first_name,
