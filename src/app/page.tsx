@@ -16,7 +16,7 @@ export default function Home() {
   }, []);
 
   const getAllPlayers = async () => {
-    const data = await fetch("http://localhost:3000/api/allPlayers", {
+    const data = await fetch("http://localhost:3000/api/players", {
       method: "GET",
     });
 
@@ -24,14 +24,14 @@ export default function Home() {
     setPlayers(players);
   };
 
-  const selectWinner = (player: Player) => {
+  const selectWinner = (player: Player | undefined) => {
     setWinner(player);
     setRemainingPlayers(
-      players.filter((p) => p.first_name !== player.first_name)
+      players.filter((p: Player) => p.first_name !== player!.first_name)
     );
   };
 
-  const selectLoser = (player: Player) => {
+  const selectLoser = (player: Player | undefined) => {
     setLoser(player);
   };
 
