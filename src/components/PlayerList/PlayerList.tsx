@@ -9,9 +9,9 @@ export default function PlayerList({
   players: Player[];
   callback: (player: Player | undefined) => void;
 }) {
-  const [selectedPlayer, setSelectedPlayer] = useState("");
+  const [selectedPlayer, setSelectedPlayer] = useState<string | undefined>("");
 
-  const returnPlayer = (playerName: string) => {
+  const returnPlayer = (playerName: string | undefined) => {
     const player = players.find((player) => player.first_name === playerName);
     return player;
   };
