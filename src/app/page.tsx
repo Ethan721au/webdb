@@ -1,6 +1,7 @@
 "use client";
 
 import PlayerList from "@/components/PlayerList/PlayerList";
+// import Testing from "@/components/Testing/Testing";
 import { Player } from "@/types";
 import { useEffect, useState } from "react";
 
@@ -58,6 +59,7 @@ export default function Home() {
       <PlayerList players={remainingPlayers} callback={selectLoser} />
       {loser && winner && <button onClick={recordResult}>Record result</button>}
       <div>{message}</div>
+      {/* <Testing /> */}
     </>
   );
 }
