@@ -1,20 +1,27 @@
 "use client";
 
-import PlayerList from "@/components/PlayerList/PlayerList";
-// import Testing from "@/components/Testing/Testing";
-import { Player } from "@/types";
+import GamesSummary from "@/components/GamesSummary/GamesSummary";
+import Scores from "@/components/Scores/Scores";
 import { useEffect, useState } from "react";
+import styles from "./home.module.css";
 
 export default function Home() {
+  const [games, setGames] = useState([]);
   const [players, setPlayers] = useState([]);
-  const [remainingPlayers, setRemainingPlayers] = useState([]);
-  const [winner, setWinner] = useState<Player>();
-  const [loser, setLoser] = useState<Player>();
-  const [message, setMessage] = useState("");
 
   useEffect(() => {
+    getAllGames();
     getAllPlayers();
   }, []);
+
+  const getAllGames = async () => {
+    const data = await fetch("http://localhost:3000/api/games", {
+      method: "GET",
+    });
+
+    const { games } = await data.json();
+    setGames(games);
+  };
 
   const getAllPlayers = async () => {
     const data = await fetch("http://localhost:3000/api/players", {
@@ -25,41 +32,10 @@ export default function Home() {
     setPlayers(players);
   };
 
-  const selectWinner = (player: Player | undefined) => {
-    setWinner(player);
-    setRemainingPlayers(
-      players.filter((p: Player) => p.first_name !== player!.first_name)
-    );
-  };
-
-  const selectLoser = (player: Player | undefined) => {
-    setLoser(player);
-  };
-
-  const recordResult = async () => {
-    const gameDetails = {
-      opponents: { player1: winner, player2: loser },
-      winner: winner,
-      eloExchange: 10,
-    };
-
-    const data = await fetch("http://localhost:3000/api/games", {
-      method: "PUT",
-      body: JSON.stringify(gameDetails),
-    });
-    const message = await data.json();
-    setMessage(message);
-  };
-
   return (
-    <>
-      <div>Winner</div>
-      <PlayerList players={players} callback={selectWinner} />
-      {remainingPlayers.length > 0 && <div>Loser</div>}
-      <PlayerList players={remainingPlayers} callback={selectLoser} />
-      {loser && winner && <button onClick={recordResult}>Record result</button>}
-      <div>{message}</div>
-      {/* <Testing /> */}
-    </>
+    <div className={styles.container}>
+      <Scores players={players} />
+      <GamesSummary games={games} />
+    </div>
   );
 }

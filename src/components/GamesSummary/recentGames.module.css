@@ -1,0 +1,81 @@
+@import url("https://fonts.googleapis.com/css2?family=Belanosima&display=swap");
+
+/*
+
+expo install @expo-google-fonts/belanosima expo-font
+
+import { useFonts } from 'expo-font';
+import { Belanosima_400Regular } from '@expo-google-fonts/belanosima';
+import AppLoading from 'expo-app-loading';
+
+export default function App() {
+  const [fontsLoaded] = useFonts({
+    Belanosima_400Regular,
+  });
+
+  if (!fontsLoaded) {
+    return <AppLoading />;
+  }
+
+  return (
+    <Text style={{ fontFamily: 'Belanosima_400Regular', fontSize: 20 }}>
+      Hello, World!
+    </Text>
+  );
+}
+
+
+
+*/
+
+.container {
+  background: LightBlue;
+  border-radius: 10px;
+  padding: 10px 15px 15px;
+  flex: 1 0 300px;
+}
+
+.header {
+  font-family: Belanosima, sans-serif;
+  font-size: 30px;
+  margin-bottom: 10px;
+  color: #0006;
+}
+
+.table {
+  width: 100%;
+  margin: auto;
+}
+
+.row {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+
+.winner {
+  padding: 3px 8px;
+  white-space: nowrap;
+  text-align: left;
+  background-color: yellowgreen;
+  min-width: 100px;
+}
+
+.loser {
+  padding: 3px 8px;
+  white-space: nowrap;
+  text-align: left;
+  background-color: lightcoral;
+  min-width: 100px;
+}
+
+.eloExchange {
+  padding: 0 4px;
+  text-align: center;
+  font-size: 14px;
+}
+
+.date {
+  font-size: 10px;
+  opacity: 0.6;
+}

@@ -10,6 +10,7 @@ export interface WinRates {
 }
 
 export interface Game {
+  createdAt: string;
   opponents: { player1: Player; player2: Player };
   winner: Player;
   eloExchange: number;
