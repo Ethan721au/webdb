@@ -1,4 +1,4 @@
-import { getPlayer, updatePlayer } from "@/services/playerService";
+import { getPlayer } from "@/services/playerService";
 import { NextResponse } from "next/server";
 
 export async function GET() {
@@ -10,13 +10,13 @@ export async function GET() {
   });
 }
 
-export async function PUT(request: Request) {
-  const player = await request.json();
-  const updatedPlayer = await updatePlayer(player);
+// export async function PUT(request: Request) {
+//   const player = await request.json();
+//   const updatedPlayer = await updatePlayer(player);
 
-  return NextResponse.json({
-    name: updatedPlayer.first_name,
-    age: 25,
-    email: "sdfsfs",
-  });
-}
+//   return NextResponse.json({
+//     name: updatedPlayer.first_name,
+//     age: 25,
+//     email: "sdfsfs",
+//   });
+// }
