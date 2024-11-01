@@ -42,3 +42,21 @@ export const updatePlayer = async (player: Player) => {
     throw new Error("Error while fetching user in database!");
   }
 };
+
+export const addPlayer = async (newPlayer: Player) => {
+  dbconnect();
+  try {
+    const isExisting = await getPlayer({ first_name: newPlayer.first_name });
+    console.log(isExisting, "isExisting");
+
+    if (isExisting) {
+      return "Player already exists!";
+    } else {
+      await PlayerModel.create(newPlayer);
+      return "Player added successfully!";
+    }
+  } catch (err) {
+    console.log(err);
+    throw new Error("Error while fetching player in database!");
+  }
+};
