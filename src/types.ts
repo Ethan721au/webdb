@@ -7,7 +7,10 @@ export interface Player {
 }
 
 export interface WinRates {
-  global: number;
+  globalWinRate: number;
+  globalWins: number;
+  globalLosses: number;
+  vs: { player: string; wins: number; losses: number; winRate: number }[];
 }
 
 export interface Game {

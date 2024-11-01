@@ -27,29 +27,29 @@ export const getPlayer = async (request: Player) => {
 };
 
 export const updatePlayer = async (player: Player) => {
-  console.log(player, "player");
-  return "Player updated successfully!";
-  // dbconnect();
-  // try {
-  //   await PlayerModel.findOneAndReplace(
-  //     { first_name: player.first_name },
-  //     { first_name: "John" }
-  //   );
+  dbconnect();
+  try {
+    const isExisting = await getPlayer({ first_name: player.first_name });
+    if (!isExisting) {
+      return "Player does not exist!";
+    } else {
+      await PlayerModel.findOneAndReplace(
+        { first_name: player.first_name },
+        player
+      );
 
-  //   const user = await getPlayer({ first_name: "John" });
-
-  //   return user;
-  // } catch (err) {
-  //   console.log(err);
-  //   throw new Error("Error while fetching user in database!");
-  // }
+      return "Player updated successfully!";
+    }
+  } catch (err) {
+    console.log(err);
+    throw new Error("Error while fetching user in database!");
+  }
 };
 
 export const addPlayer = async (newPlayer: Player) => {
   dbconnect();
   try {
     const isExisting = await getPlayer({ first_name: newPlayer.first_name });
-    console.log(isExisting, "isExisting");
 
     if (isExisting) {
       return "Player already exists!";

@@ -4,7 +4,7 @@ import mongoose from "mongoose";
 export const gameSchema = new Schema(
   {
     season: { type: Number, required: true },
-    opponents: { type: Object, required: true },
+    opponents: { type: Array, required: true },
     winner: { type: Object, required: true },
     eloExchange: { type: Number, required: true },
   },
