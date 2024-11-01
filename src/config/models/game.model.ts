@@ -3,7 +3,7 @@ import mongoose from "mongoose";
 
 export const gameSchema = new Schema(
   {
-    // outcome: { type: String, required: true },
+    season: { type: Number, required: true },
     opponents: { type: Object, required: true },
     winner: { type: Object, required: true },
     eloExchange: { type: Number, required: true },

@@ -27,20 +27,22 @@ export const getPlayer = async (request: Player) => {
 };
 
 export const updatePlayer = async (player: Player) => {
-  dbconnect();
-  try {
-    await PlayerModel.findOneAndReplace(
-      { first_name: player.first_name },
-      { first_name: "John" }
-    );
+  console.log(player, "player");
+  return "Player updated successfully!";
+  // dbconnect();
+  // try {
+  //   await PlayerModel.findOneAndReplace(
+  //     { first_name: player.first_name },
+  //     { first_name: "John" }
+  //   );
 
-    const user = await getPlayer({ first_name: "John" });
+  //   const user = await getPlayer({ first_name: "John" });
 
-    return user;
-  } catch (err) {
-    console.log(err);
-    throw new Error("Error while fetching user in database!");
-  }
+  //   return user;
+  // } catch (err) {
+  //   console.log(err);
+  //   throw new Error("Error while fetching user in database!");
+  // }
 };
 
 export const addPlayer = async (newPlayer: Player) => {

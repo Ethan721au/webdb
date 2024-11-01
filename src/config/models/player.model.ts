@@ -7,6 +7,8 @@ export const playerSchema = new Schema(
     last_name: { type: String },
     elo: { type: Number, default: 1200 },
     winRates: { type: Object, default: { global: 0 } },
+    leaderboard: { type: Array },
+    // trophyTally: { type: Number, default: 0 },
     // first_name: { type: String },
     // last_name: { type: String },
     // provider: { type: String },
