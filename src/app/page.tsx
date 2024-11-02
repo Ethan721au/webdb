@@ -53,6 +53,43 @@ export default function Home() {
     });
   };
 
+  /*
+BETTER than below:
+
+const recordResult = async () => {
+  const [winner, loser] = [playersSeed[0], playersSeed[4]];
+  const draw = false;
+  const season = 8;
+  const eloExchange = determineEloExchange(winner.elo!, loser.elo!);
+
+  const calculateElo = (player: Player) =>
+    draw ? player.elo : player === winner ? player.elo! + eloExchange! : player.elo! - eloExchange!;
+
+  const updateLeaderboardEntry = (entry: Leaderboard, player: Player) => {
+    if (entry.season !== season) return entry;
+    return {
+      ...entry,
+      matchesPlayed: entry.matchesPlayed + 1,
+      wins: draw ? entry.wins : player === winner ? entry.wins + 1 : entry.wins,
+      losses: draw ? entry.losses : player === loser ? entry.losses + 1 : entry.losses,
+      draws: draw ? entry.draws + 1 : entry.draws,
+      overall_points: draw ? entry.overall_points + 1 : player === winner ? entry.overall_points + 3 : entry.overall_points,
+    };
+  };
+
+  const updatedOpponents = [winner, loser].map((player) => ({
+    ...player,
+    elo: calculateElo(player),
+    winRates: draw ? player.winRates : calculateWinRates(player, winner, loser),
+    leaderboard: player.leaderboard?.map((entry) => updateLeaderboardEntry(entry, player)),
+  }));
+
+  // Return or process `updatedOpponents` as needed
+};
+
+
+*/
+
   const recordResult = async () => {
     const opponents = [playersSeed[0], playersSeed[4]];
     const draw = false;
