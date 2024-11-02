@@ -5,8 +5,10 @@ export const gameSchema = new Schema(
   {
     season: { type: Number, required: true },
     opponents: { type: Array, required: true },
-    winner: { type: Object, required: true },
-    eloExchange: { type: Number, required: true },
+    isDraw: { type: Boolean, required: true, default: false },
+    winner: { type: Object },
+    loser: { type: Object },
+    eloExchange: { type: Number },
   },
   { timestamps: true }
 );

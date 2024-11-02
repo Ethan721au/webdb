@@ -17,6 +17,7 @@ export default function Home() {
   const [message2, setMessage2] = useState("");
   const [winner, setWinner] = useState(playersSeed[0]);
   const [loser, setLoser] = useState(playersSeed[4]);
+  const [draw, setDraw] = useState(true);
 
   useEffect(() => {
     getAllGames();
@@ -45,31 +46,51 @@ export default function Home() {
     const gameDetails = {
       season: 8,
       opponents: [winner, loser],
-      winner: winner,
-      eloExchange: determineEloExchange(winner.elo!, loser.elo!),
+      isDraw: draw ? true : false,
+      winner: draw ? null : winner,
+      loser: draw ? null : loser,
+      eloExchange: draw ? null : determineEloExchange(winner.elo!, loser.elo!),
     };
 
     const updatedOpponents = gameDetails.opponents.map((player) => {
       return {
         ...player,
-        elo:
-          player === winner
-            ? player.elo! + gameDetails.eloExchange
-            : player.elo! - gameDetails.eloExchange,
-        winRates: calculateWinRates(player, winner, loser),
-        leaderboard: playersSeed[4].leaderboard?.map((entry) => {
+        elo: draw
+          ? player.elo
+          : player === gameDetails.winner
+            ? player.elo! + gameDetails!.eloExchange!
+            : player.elo! - gameDetails!.eloExchange!,
+        winRates: draw
+          ? player.winRates
+          : calculateWinRates(player, gameDetails.winner, gameDetails.loser),
+        leaderboard: player.leaderboard?.map((entry) => {
           if (entry.season !== gameDetails.season) return entry;
           return {
             ...entry,
             matchesPlayed: entry.matchesPlayed + 1,
-            wins: entry.wins + 1,
-            overall_points: entry.overall_points + 3,
+            wins: draw
+              ? entry.wins
+              : player === gameDetails.winner
+                ? entry.wins + 1
+                : entry.wins,
+            losses: draw
+              ? entry.losses
+              : player === gameDetails.loser
+                ? entry.losses + 1
+                : entry.losses,
+            draws: draw ? entry.draws + 1 : entry.draws,
+            overall_points: draw
+              ? entry.overall_points + 1
+              : player === gameDetails.winner
+                ? entry.overall_points + 3
+                : entry.overall_points,
           };
         }),
       };
     });
 
     console.log(updatedOpponents, "updatedOpponents");
+    console.log(gameDetails, "gameDetails");
 
     // const updatedPlayer1 = {
     //   ...loser,
