@@ -77,7 +77,7 @@ export default function Home() {
 
   return (
     <div className={styles.container}>
-      {/* <button onClick={deletePP}>test</button> */}
+      <button>test</button>
     </div>
   );
 }
