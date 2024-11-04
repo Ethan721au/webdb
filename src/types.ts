@@ -1,4 +1,5 @@
 export interface Player {
+  _id?: string;
   first_name?: string;
   last_name?: string;
   elo?: number;

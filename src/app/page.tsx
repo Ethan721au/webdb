@@ -2,15 +2,13 @@
 
 import { useEffect, useState } from "react";
 import styles from "./home.module.css";
+// import { deletePlayer, updatePlayer } from "@/services/playerService";
 // import { calculateElo } from "@/lib/calculatePlayerElo";
 // import { calculateWinRates } from "@/lib/calculateWinRates";
 // import { updateLeaderboardEntry } from "@/lib/updateLeaderboardEntry";
 // import { determineEloExchange } from "@/lib/calculateEloExchange";
 
 // import { Player } from "@/types";
-
-// const draw = false;
-// const season = 8;
 
 export default function Home() {
   // const [games, setGames] = useState([]);
@@ -40,62 +38,46 @@ export default function Home() {
     setPlayers(players);
   };
 
-  // const updatePlayer = async () => {
-  //   const playersToUpdate = players.filter(
-  //     (player) => player.first_name === "Eric" || player.first_name === "Jane"
-  //   );
+  // const getLeaderboard = () => {
+  //   const test = players
+  //     .sort(
+  //       (a, b) =>
+  //         a.leaderboard[0].overall_points! - b.leaderboard[0].overall_points!
+  //     )
+  //     .reverse();
 
-  //   const [winner, loser] = [playersToUpdate[0], playersToUpdate[1]];
-  //   console.log(winner, "winner");
-  //   const eloExchange = determineEloExchange(winner!.elo!, loser!.elo!);
+  //   test.map((player) => {
+  //     const rank = test.indexOf(player) + 1;
 
-  //   const updatedOpponents = [winner, loser].map((player) => {
-  //     const updatedPlayer = [winner, loser].map((player) => {
-  //       const opponent = player === winner ? loser : winner;
-  //       if (
-  //         !player.winRates?.vs ||
-  //         !player.winRates?.vs.find((p) => p.player === opponent?.first_name)
-  //       ) {
-  //         const newVs = {
-  //           player: opponent?.first_name,
-  //           wins: 0,
-  //           losses: 0,
-  //           winRate: 0,
+  //     const updatedLeaderboard = player.leaderboard.map((entry) => {
+  //       if (entry.season === 8) {
+  //         return {
+  //           ...entry,
+  //           rank: rank,
   //         };
-
-  //         const updatedPlayer = {
-  //           ...player,
-  //           winRates: {
-  //             ...player.winRates,
-  //             vs: [...player.winRates?.vs, newVs],
-  //           },
-  //         };
-
-  //         return updatedPlayer;
   //       }
-
-  //       return player;
+  //       return entry;
   //     });
 
-  //     console.log(updatedPlayer, "updatedPlayer");
-  //     return {
+  //     const updatedPlayer = {
   //       ...player,
-  //       elo: calculateElo(player, eloExchange, draw, winner),
-  //       winRates: draw
-  //         ? player.winRates
-  //         : calculateWinRates(player, updatedPlayer),
-  //       leaderboard: player?.leaderboard?.map((entry) =>
-  //         updateLeaderboardEntry(entry, player, season, draw, winner, loser)
-  //       ),
+  //       leaderboard: updatedLeaderboard,
   //     };
-  //   });
 
-  //   console.log(updatedOpponents, "updatedOpponents");
+  //     const message = updatePlayer(updatedPlayer);
+  //   });
+  // };
+
+  // const deletePP = () => {
+  //   const test = players[0];
+  //   console.log(test._id, "test");
+  //   const message = deletePlayer(test);
+  //   console.log(message, "message");
   // };
 
   return (
     <div className={styles.container}>
-      <button>test</button>
+      {/* <button onClick={deletePP}>test</button> */}
     </div>
   );
 }

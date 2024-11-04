@@ -24,15 +24,11 @@ export const playerSchema = new Schema(
         },
       ],
     },
-    // trophyTally: { type: Number, default: 0 },
-    // first_name: { type: String },
-    // last_name: { type: String },
-    // provider: { type: String },
+
     // email: { type: String, required: true },
     // password: { type: String },
-    // targetCalories: { type: Number, default: 2000 },
-    // favourites: { type: Array },
-    // isAdmin: { type: Boolean, default: false },
+
+    isAdmin: { type: Boolean, default: false },
   },
   { timestamps: true }
 );

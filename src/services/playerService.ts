@@ -62,3 +62,21 @@ export const addPlayer = async (newPlayer: Player) => {
     throw new Error("Error while fetching player in database!");
   }
 };
+
+export const deletePlayer = async (player: Player) => {
+  dbconnect();
+  try {
+    const isExisting = await getPlayer({ _id: player._id });
+    console.log(isExisting);
+
+    if (!isExisting) {
+      return "Player does not exist!";
+    } else {
+      await PlayerModel.deleteOne(player);
+      return "Player deleted successfully!";
+    }
+  } catch (err) {
+    console.log(err);
+    throw new Error("Error while fetching player in database!");
+  }
+};
