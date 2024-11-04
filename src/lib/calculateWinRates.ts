@@ -1,14 +1,11 @@
 import { Player } from "@/types";
 
-export const calculateWinRates = (
-  player: Player,
-  winner: Player,
-  loser: Player
-) => {
-  const opponents = [winner, loser];
+export const calculateWinRates = (player: Player, opponents: Player[]) => {
+  const [winner, loser] = opponents;
 
   const updatedWinRates = opponents.map((player) => {
     if (!player.winRates) {
+      console.log("no winrates");
       return {
         ...player,
         winRates: {
