@@ -10,7 +10,20 @@ export const playerSchema = new Schema(
       type: Object,
       default: { globalWins: 0, globalLosses: 0, globalWinRate: 0, vs: [] },
     },
-    leaderboard: { type: Array },
+    leaderboard: {
+      type: Array,
+      default: [
+        {
+          season: 8,
+          matchesPlayed: 0,
+          wins: 0,
+          draws: 0,
+          losses: 0,
+          overall_points: 0,
+          trophyTally: 0,
+        },
+      ],
+    },
     // trophyTally: { type: Number, default: 0 },
     // first_name: { type: String },
     // last_name: { type: String },
