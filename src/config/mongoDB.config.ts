@@ -1,6 +1,6 @@
 import { connect } from "mongoose";
-import { PlayerModel } from "./models/player.model";
-import { playersSeed } from "./seeds/playersSeed";
+// import { PlayerModel } from "./models/player.model";
+// import { playersSeed } from "./seeds/playersSeed";
 
 export const dbconnect = async () => {
   try {
@@ -9,7 +9,7 @@ export const dbconnect = async () => {
     }
     connect(process.env.MONGO_URI);
 
-    await seedPlayers();
+    // await seedPlayers();
     // await seedRecipes();
     // await seedIngredients();
     // await seedDiaries();
@@ -19,16 +19,16 @@ export const dbconnect = async () => {
   }
 };
 
-async function seedPlayers() {
-  const playersCount = await PlayerModel.countDocuments();
-  if (playersCount > 0) {
-    console.log("Users seed is already done!");
-    return;
-  }
+// async function seedPlayers() {
+//   const playersCount = await PlayerModel.countDocuments();
+//   if (playersCount > 0) {
+//     console.log("Users seed is already done!");
+//     return;
+//   }
 
-  for (const player of playersSeed) {
-    await PlayerModel.create(player);
-  }
+//   for (const player of playersSeed) {
+//     await PlayerModel.create(player);
+//   }
 
-  console.log("Users seed is done!");
-}
+//   console.log("Users seed is done!");
+// }

@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import styles from "./home.module.css";
 // import { deletePlayer, updatePlayer } from "@/services/playerService";
 // import { calculateElo } from "@/lib/calculatePlayerElo";
@@ -12,12 +12,12 @@ import styles from "./home.module.css";
 
 export default function Home() {
   // const [games, setGames] = useState([]);
-  const [players, setPlayers] = useState([]);
-  console.log(players, "players");
+  // const [players, setPlayers] = useState([]);
+  // console.log(players, "players");
 
   useEffect(() => {
     // getAllGames();
-    getAllPlayers();
+    // getAllPlayers();
   }, []);
 
   // const getAllGames = async () => {
@@ -29,50 +29,13 @@ export default function Home() {
   //   setGames(games);
   // };
 
-  const getAllPlayers = async () => {
-    const data = await fetch("http://localhost:3000/api/players", {
-      method: "GET",
-    });
-
-    const { players } = await data.json();
-    setPlayers(players);
-  };
-
-  // const getLeaderboard = () => {
-  //   const test = players
-  //     .sort(
-  //       (a, b) =>
-  //         a.leaderboard[0].overall_points! - b.leaderboard[0].overall_points!
-  //     )
-  //     .reverse();
-
-  //   test.map((player) => {
-  //     const rank = test.indexOf(player) + 1;
-
-  //     const updatedLeaderboard = player.leaderboard.map((entry) => {
-  //       if (entry.season === 8) {
-  //         return {
-  //           ...entry,
-  //           rank: rank,
-  //         };
-  //       }
-  //       return entry;
-  //     });
-
-  //     const updatedPlayer = {
-  //       ...player,
-  //       leaderboard: updatedLeaderboard,
-  //     };
-
-  //     const message = updatePlayer(updatedPlayer);
+  // const getAllPlayers = async () => {
+  //   const data = await fetch("http://localhost:3000/api/players", {
+  //     method: "GET",
   //   });
-  // };
 
-  // const deletePP = () => {
-  //   const test = players[0];
-  //   console.log(test._id, "test");
-  //   const message = deletePlayer(test);
-  //   console.log(message, "message");
+  //   const { players } = await data.json();
+  //   setPlayers(players);
   // };
 
   return (
