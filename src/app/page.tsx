@@ -2,6 +2,9 @@
 
 import { useEffect } from "react";
 import styles from "./home.module.css";
+import LifeCounter from "@/components/LifeCounter/LifeCounter";
+import SpecialCounters from "@/components/SpecialCounters/SpecialCounters";
+import CountersConfig from "@/components/CountersConfig/CountersConfig";
 // import { deletePlayer, updatePlayer } from "@/services/playerService";
 // import { calculateElo } from "@/lib/calculatePlayerElo";
 // import { calculateWinRates } from "@/lib/calculateWinRates";
@@ -13,8 +16,7 @@ import styles from "./home.module.css";
 export default function Home() {
   // const [games, setGames] = useState([]);
   // const [players, setPlayers] = useState([]);
-  // console.log(players, "players");
-
+  // const [life, setLife] = useState(20);
   useEffect(() => {
     // getAllGames();
     // getAllPlayers();
@@ -40,7 +42,15 @@ export default function Home() {
 
   return (
     <div className={styles.container}>
-      <button>test</button>
+      <div className={styles.playerReverse}>
+        <LifeCounter />
+        <SpecialCounters />
+      </div>
+      <CountersConfig />
+      <div className={styles.player}>
+        <LifeCounter />
+        <SpecialCounters />
+      </div>
     </div>
   );
 }
