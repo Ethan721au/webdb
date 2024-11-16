@@ -2,6 +2,7 @@
   color: white;
   flex: 1;
   display: flex;
+  position: relative;
 }
 
 .lifeCounter {
@@ -13,12 +14,8 @@
   font-size: 90px;
 }
 
-.increments {
-  padding: 10px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 40px;
-  font-size: 25px;
+.increment {
+  position: absolute;
+  top: 20%;
+  left: 47%;
 }

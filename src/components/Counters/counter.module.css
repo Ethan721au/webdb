@@ -1,0 +1,25 @@
+.player {
+  flex: 1;
+  display: flex;
+  /* flex-direction: column; */
+}
+
+.playerReverse {
+  flex: 1;
+  display: flex;
+  transform: rotate(180deg);
+}
+
+.counters {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  /* transform: rotate(90deg); */
+}
+
+.countersReverse {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  /* transform: rotate(270deg); */
+}

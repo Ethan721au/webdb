@@ -1,9 +1,9 @@
 .increments {
-  padding: 30px;
+  padding: 10px;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   gap: 40px;
-  font-size: 25px;
+  font-size: 20px;
 }

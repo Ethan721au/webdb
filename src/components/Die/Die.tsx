@@ -1,4 +1,4 @@
-import { useRef } from "react";
+import { useEffect, useRef } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCircle } from "@fortawesome/free-solid-svg-icons";
 
@@ -7,48 +7,48 @@ import styles from "./die.module.css";
 export default function Die() {
   const cubeRef = useRef(null);
 
-  // useEffect(() => {
-  //   const angleArray = [
-  //     [0, 0, 0],
-  //     [-310, -362, -38],
-  //     [-400, -320, -2],
-  //     [135, -217, -88],
-  //     [-224, -317, 5],
-  //     [-47, -219, -81],
-  //     [-133, -360, -53],
-  //   ];
+  useEffect(() => {
+    const angleArray = [
+      [0, 0, 0],
+      [-310, -362, -38],
+      [-400, -320, -2],
+      [135, -217, -88],
+      [-224, -317, 5],
+      [-47, -219, -81],
+      [-133, -360, -53],
+    ];
 
-  //   const handleCubeClick = () => {
-  //     const cube = cubeRef.current;
-  //     if (cube) {
-  //       // Start animation
-  //       cube.style.animation = "animate 1.4s linear";
+    const handleCubeClick = () => {
+      const cube = cubeRef.current;
+      if (cube) {
+        // Start animation
+        cube.style.animation = "animate 1.4s linear";
 
-  //       // Select a random angle set
-  //       const randomAngle = Math.floor(Math.random() * 6) + 1;
-  //       cube.style.transform = `rotateX(${angleArray[randomAngle][0]}deg) rotateY(${angleArray[randomAngle][1]}deg) rotateZ(${angleArray[randomAngle][2]}deg)`;
-  //       cube.style.transition = "1s linear";
+        // Select a random angle set
+        const randomAngle = Math.floor(Math.random() * 6) + 1;
+        cube.style.transform = `rotateX(${angleArray[randomAngle][0]}deg) rotateY(${angleArray[randomAngle][1]}deg) rotateZ(${angleArray[randomAngle][2]}deg)`;
+        cube.style.transition = "1s linear";
 
-  //       // Remove animation after it ends
-  //       cube.addEventListener(
-  //         "animationend",
-  //         () => {
-  //           cube.style.animation = "";
-  //         },
-  //         { once: true }
-  //       );
-  //     }
-  //   };
+        // Remove animation after it ends
+        cube.addEventListener(
+          "animationend",
+          () => {
+            cube.style.animation = "";
+          },
+          { once: true }
+        );
+      }
+    };
 
-  //   // Add event listener for cube click
-  //   const cube = cubeRef.current;
-  //   cube?.addEventListener("click", handleCubeClick);
+    // Add event listener for cube click
+    const cube = cubeRef.current;
+    cube?.addEventListener("click", handleCubeClick);
 
-  //   // Cleanup event listener on unmount
-  //   return () => {
-  //     cube?.removeEventListener("click", handleCubeClick);
-  //   };
-  // }, []);
+    // Cleanup event listener on unmount
+    return () => {
+      cube?.removeEventListener("click", handleCubeClick);
+    };
+  }, []);
 
   return (
     <div className={styles.container}>

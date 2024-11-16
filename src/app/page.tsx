@@ -1,11 +1,14 @@
 "use client";
 
-import { useEffect } from "react";
+import { ResetProvider } from "@/hooks/useReset";
+// import { useEffect, useState } from "react";
 import styles from "./home.module.css";
-// import LifeCounter from "@/components/LifeCounter/LifeCounter";
-// import SpecialCounters from "@/components/SpecialCounters/SpecialCounters";
-// import CountersConfig from "@/components/CountersConfig/CountersConfig";
-import Die from "@/components/Die/Die";
+// import LifeCounter from "@/components/Counters/LifeCounter/LifeCounter";
+// import SpecialCounters from "@/components/Counters/SpecialCounters/SpecialCounters";
+// import CountersConfig from "@/components/Counters/CountersConfig/CountersConfig";
+// import Die from "@/components/Die/Die";
+import Counters from "@/components/Counters/Counters";
+import CountersCommander from "@/components/CountersCommander/CountersCommander";
 // import { deletePlayer, updatePlayer } from "@/services/playerService";
 // import { calculateElo } from "@/lib/calculatePlayerElo";
 // import { calculateWinRates } from "@/lib/calculateWinRates";
@@ -14,16 +17,15 @@ import Die from "@/components/Die/Die";
 
 // import { Player } from "@/types";
 
-// const playersStartingLife = 20;
-
 export default function Home() {
   // const [games, setGames] = useState([]);
   // const [players, setPlayers] = useState([]);
-  // const [life, setLife] = useState(playersStartingLife);
-  useEffect(() => {
-    // getAllGames();
-    // getAllPlayers();
-  }, []);
+  // const [test, setTest] = useState(0);
+  // console.log(test);
+  // useEffect(() => {
+  //   getAllGames();
+  //   getAllPlayers();
+  // }, []);
 
   // const updateLife = (increment: number) => {
   //   setLife((prevLife) => prevLife + increment);
@@ -48,24 +50,15 @@ export default function Home() {
   // };
 
   return (
-    <div className={styles.container}>
-      {/* <div className={styles.playerReverse}>
-        <LifeCounter startingLife={life} />
-        <SpecialCounters />
-      </div>
-      <CountersConfig />
-      <div className={styles.player}>
-        <LifeCounter startingLife={life} />
-        <SpecialCounters />
-        <button
-          onClick={() => {
-            setLife(20);
-          }}
-        >
-          test
-        </button>
-      </div> */}
-      <Die />
+    // <div className={styles.container}>
+    //   <ResetProvider>
+    //     <Counters />
+    //   </ResetProvider>
+    // </div>
+    <div className={styles.containerCommander}>
+      <ResetProvider>
+        <CountersCommander />
+      </ResetProvider>
     </div>
   );
 }

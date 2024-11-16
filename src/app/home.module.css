@@ -1,20 +1,15 @@
 .container {
-  /* width: 30%;
-  height: 100vh;
+  width: 35%;
+  height: 90vh;
   margin: auto;
   display: flex;
-  flex-direction: column; */
+  flex-direction: column;
+  background-color: black;
 }
 
-.player {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-}
-
-.playerReverse {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  transform: rotate(180deg);
+.containerCommander {
+  width: 415px;
+  height: 900px;
+  background-color: black;
+  margin: auto;
 }
