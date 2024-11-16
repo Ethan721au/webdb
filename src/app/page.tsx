@@ -7,7 +7,7 @@ import styles from "./home.module.css";
 // import SpecialCounters from "@/components/Counters/SpecialCounters/SpecialCounters";
 // import CountersConfig from "@/components/Counters/CountersConfig/CountersConfig";
 // import Die from "@/components/Die/Die";
-import Counters from "@/components/Counters/Counters";
+// import Counters from "@/components/Counters/Counters";
 import CountersCommander from "@/components/CountersCommander/CountersCommander";
 // import { deletePlayer, updatePlayer } from "@/services/playerService";
 // import { calculateElo } from "@/lib/calculatePlayerElo";
