@@ -12,7 +12,7 @@ const minIncrement = 1;
 export default function LifeCounter() {
   const { reset } = useReset();
   const [life, setLife] = useState(playersStartingLife);
-  const [commander, setCommander] = useState(true);
+  // const [commander, setCommander] = useState(true);
   const [increment, setIncrement] = useState(0);
   const currentTimeout = useRef<NodeJS.Timeout | null>(null);
 
@@ -45,7 +45,7 @@ export default function LifeCounter() {
     <div className={styles.container}>
       <IncrementButton updateLife={updateLife} increment={maxIncrement} />
       {increment !== 0 && <div className={styles.increment}>{increment}</div>}
-      {commander && <CommanderDamage />}
+      <CommanderDamage />
       <div className={styles.lifeCounter}>{life}</div>
       <IncrementButton updateLife={updateLife} increment={minIncrement} />
     </div>
