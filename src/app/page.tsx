@@ -9,6 +9,7 @@ import styles from "./home.module.css";
 // import Die from "@/components/Die/Die";
 // import Counters from "@/components/Counters/Counters";
 import CountersCommander from "@/components/CountersCommander/CountersCommander";
+import { useEffect, useState } from "react";
 // import { deletePlayer, updatePlayer } from "@/services/playerService";
 // import { calculateElo } from "@/lib/calculatePlayerElo";
 // import { calculateWinRates } from "@/lib/calculateWinRates";
@@ -18,6 +19,12 @@ import CountersCommander from "@/components/CountersCommander/CountersCommander"
 // import { Player } from "@/types";
 
 export default function Home() {
+  const [isMounted, setIsMounted] = useState(false);
+
+  useEffect(() => {
+    setIsMounted(true);
+  }, []);
+
   // const [games, setGames] = useState([]);
   // const [players, setPlayers] = useState([]);
   // const [test, setTest] = useState(0);
@@ -48,6 +55,10 @@ export default function Home() {
   //   const { players } = await data.json();
   //   setPlayers(players);
   // };
+
+  if (!isMounted) {
+    return <div>loading...</div>;
+  }
 
   return (
     // <div className={styles.container}>
