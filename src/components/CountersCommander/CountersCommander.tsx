@@ -3,8 +3,60 @@ import LifeCounter from "./LifeCounter/LifeCounter";
 import CommanderDamage from "./SpecialCounters/CommanderDamage/CommanderDamage";
 import SpecialCounters from "./SpecialCounters/SpecialCounters";
 import styles from "./counter.module.css";
+import styled from "styled-components";
+import { useState } from "react";
+
+const shouldForwardProp = (prop: string) => prop !== "startingPlayer";
+
+const Overlay = styled.div.withConfig({
+  shouldForwardProp,
+})<{ startingPlayer: boolean }>`
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  z-index: 2;
+  pointer-events: none;
+  animation: ${({ startingPlayer }) =>
+    startingPlayer ? "highlight 0.3s infinite ease-in-out" : "none"};
+
+  @keyframes highlight {
+    0% {
+      background-color: white;
+      opacity: 0;
+    }
+    50% {
+      background-color: white;
+      opacity: 1;
+    }
+    100% {
+      background-color: white;
+      opacity: 0;
+    }
+  }
+`;
+
+const defaultStartingPlayer = [
+  {
+    player: "player1",
+    startingPlayer: false,
+  },
+  {
+    player: "player2",
+    startingPlayer: false,
+  },
+  {
+    player: "player3",
+    startingPlayer: false,
+  },
+  {
+    player: "player4",
+    startingPlayer: false,
+  },
+];
 
 export default function CountersCommander() {
+  const [startingPlayer, setStartingPlayer] = useState(defaultStartingPlayer);
+
   return (
     <>
       {/* <div className={styles.playerReverse}>
@@ -57,6 +109,7 @@ export default function CountersCommander() {
               </div>
             </div>
             <CommanderDamage player="bottomRight" />
+            <Overlay startingPlayer={startingPlayer[0].startingPlayer} />
           </div>
           <div style={{ height: "1px", backgroundColor: "white" }}></div>
           <div className={styles.player}>
@@ -79,6 +132,7 @@ export default function CountersCommander() {
               </div>
             </div>
             <CommanderDamage />
+            <Overlay startingPlayer={startingPlayer[2].startingPlayer} />
           </div>
         </div>
         <div className={styles.players270}>
@@ -102,6 +156,7 @@ export default function CountersCommander() {
               </div>
             </div>
             <CommanderDamage player="bottomRight" />
+            <Overlay startingPlayer={startingPlayer[3].startingPlayer} />
           </div>
           <div style={{ height: "1px", backgroundColor: "white" }}></div>
           <div className={styles.player}>
@@ -124,6 +179,7 @@ export default function CountersCommander() {
               </div>
             </div>
             <CommanderDamage />
+            <Overlay startingPlayer={startingPlayer[1].startingPlayer} />
           </div>
         </div>
         <div
@@ -135,7 +191,7 @@ export default function CountersCommander() {
             backgroundColor: "black",
           }}
         >
-          <CountersConfig />
+          <CountersConfig setStartingPlayer={setStartingPlayer} />
         </div>
       </div>
     </>
