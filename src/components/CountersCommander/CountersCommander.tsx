@@ -56,6 +56,7 @@ const defaultStartingPlayer = [
 
 export default function CountersCommander() {
   const [startingPlayer, setStartingPlayer] = useState(defaultStartingPlayer);
+  const [display, setDisplay] = useState(false);
 
   return (
     <>
@@ -89,7 +90,12 @@ export default function CountersCommander() {
         }}
       >
         <div className={styles.players90}>
-          <div className={styles.player}>
+          <div
+            className={styles.player}
+            onClick={() => {
+              setDisplay(!display);
+            }}
+          >
             <div>
               <SpecialCounters />
             </div>
@@ -108,11 +114,16 @@ export default function CountersCommander() {
                 </div>
               </div>
             </div>
-            <CommanderDamage player="bottomRight" />
+            <CommanderDamage player="bottomRight" display={display} />
             <Overlay startingPlayer={startingPlayer[0].startingPlayer} />
           </div>
           <div style={{ height: "1px", backgroundColor: "white" }}></div>
-          <div className={styles.player}>
+          <div
+            className={styles.player}
+            onClick={() => {
+              setDisplay(!display);
+            }}
+          >
             <div>
               <SpecialCounters />
             </div>
@@ -131,12 +142,17 @@ export default function CountersCommander() {
                 </div>
               </div>
             </div>
-            <CommanderDamage />
+            <CommanderDamage display={display} />
             <Overlay startingPlayer={startingPlayer[2].startingPlayer} />
           </div>
         </div>
         <div className={styles.players270}>
-          <div className={styles.player}>
+          <div
+            className={styles.player}
+            onClick={() => {
+              setDisplay(!display);
+            }}
+          >
             <div>
               <SpecialCounters />
             </div>
@@ -155,11 +171,16 @@ export default function CountersCommander() {
                 </div>
               </div>
             </div>
-            <CommanderDamage player="bottomRight" />
+            <CommanderDamage player="bottomRight" display={display} />
             <Overlay startingPlayer={startingPlayer[3].startingPlayer} />
           </div>
           <div style={{ height: "1px", backgroundColor: "white" }}></div>
-          <div className={styles.player}>
+          <div
+            className={styles.player}
+            onClick={() => {
+              setDisplay(!display);
+            }}
+          >
             <div>
               <SpecialCounters />
             </div>
@@ -178,7 +199,7 @@ export default function CountersCommander() {
                 </div>
               </div>
             </div>
-            <CommanderDamage />
+            <CommanderDamage display={display} />
             <Overlay startingPlayer={startingPlayer[1].startingPlayer} />
           </div>
         </div>
